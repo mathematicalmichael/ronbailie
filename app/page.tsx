@@ -47,7 +47,7 @@ export default async function Home() {
           {/* Right column: Simulation */}
           <div className="relative h-[400px] md:h-[500px] border border-gray-800">
             <StructuralSimulation />
-            <div className="absolute bottom-0 left-0 p-4 bg-black/70 text-xs text-gray-400 max-w-xs">
+            <div className="absolute bottom-0 left-0 bg-black/70 text-xs text-gray-400 max-w-s">
               {homeContent.simulation.annotation}
             </div>
           </div>

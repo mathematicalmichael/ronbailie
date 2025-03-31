@@ -104,7 +104,7 @@ export default function StructuralSimulation() {
   const MAX_FORCE_HISTORY = 600
 
   // State for UI controls
-  const [springConstant, setSpringConstant] = useState(0.001);
+  const [springConstant, setSpringConstant] = useState(0.1);
   const [neighborSpringConstant, setNeighborSpringConstant] = useState(0);
   const [damping, setDamping] = useState(1.0);
   const [maxDisplacement, setMaxDisplacement] = useState(0.1);
