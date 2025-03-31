@@ -1,0 +1,31 @@
+{
+  "hero": {
+    "title": "Ronald Bailie",
+    "subtitle": "Licensed Architect, MS Civil Engineering",
+    "description": "Creating spaces where aesthetic vision meets structural precision. A unique approach to architecture informed by engineering principles.",
+    "tagline": ""
+  },
+  "features": [
+    {
+      "title": "Structural Integrity",
+      "description": "Designs that balance form and function through rigorous engineering principles"
+    },
+    {
+      "title": "Technical Precision",
+      "description": "Meticulous attention to detail in both aesthetic and mechanical systems"
+    },
+    {
+      "title": "Innovative Solutions",
+      "description": "Creative approaches to structural challenges through interdisciplinary expertise"
+    }
+  ],
+  "featuredProjects": [
+    "urban-office-tower", 
+    "modern-residential-complex", 
+    "research-facility"
+  ],
+  "simulation": {
+    "title": "Structural Analysis",
+    "annotation": "Interactive simulation demonstrating structural response under load. Drag to apply force."
+  }
+} 

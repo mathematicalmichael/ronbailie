@@ -2,56 +2,45 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import StructuralSimulation from "@/components/structural-simulation"
+import { notFound } from "next/navigation"
+import { type ClassValue, clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
 
-// This would be replaced with actual data fetching in a real application
-async function getProject(id: string) {
-  // Sample project data
-  const projects = {
-    "1": {
-      id: 1,
-      title: "Modern Residential Complex",
-      category: "Residential",
-      year: "2022",
-      location: "Seattle, WA",
-      description:
-        "A minimalist approach to multi-family housing with integrated sustainable systems. This project explores the intersection of aesthetic minimalism and engineering efficiency.",
-      longDescription:
-        "This residential complex was designed to maximize natural light while minimizing energy consumption. The structural system utilizes innovative cross-laminated timber construction, reducing the carbon footprint while maintaining structural integrity. The mechanical systems were designed to work in harmony with the building's orientation and envelope, creating a comfortable living environment with minimal energy input.",
-      images: [
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
-        "/placeholder.svg?height=600&width=800",
-      ],
-      features: [
-        "Passive solar design",
-        "Cross-laminated timber structure",
-        "Integrated mechanical systems",
-        "Rainwater harvesting",
-        "Community gardens",
-      ],
-      showSimulation: false,
-    },
-    // Add more projects as needed
-  }
+// Define a type for your project data for better type safety
+type Project = {
+  id: string;
+  title: string;
+  description: string;
+  images: string[];
+  showSimulation: boolean;
+  details: string[];
+};
 
-  return projects[id as keyof typeof projects]
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }
 
-export default async function ProjectPage({ params }: { params: { id: string } }) {
-  const project = await getProject(params.id)
+// This would be replaced with actual data fetching in a real application
+async function getProject(id: string): Promise<Project | null> {
+  // Placeholder: Replace with your actual data fetching logic
+  // Example: Fetch from a local JSON file or an API
+  try {
+     // Assuming you'll create a projects.json like the other content files
+     const projectsModule = await import("@/content/projects.json")
+     const projects: Project[] = projectsModule.default
+     const project = projects.find(p => p.id === id)
+     return project || null
+  } catch (error) {
+    console.error("Failed to fetch project:", error)
+    return null // Indicate failure
+  }
+}
+
+export default async function ProjectPage({ params: { id } }: { params: { id: string } }) {
+  const project = await getProject(id)
 
   if (!project) {
-    return (
-      <div className="flex flex-col min-h-screen bg-black text-white pt-24">
-        <div className="container mx-auto px-4 py-12 max-w-6xl">
-          <h1 className="text-4xl font-light tracking-tight mb-2">Project Not Found</h1>
-          <Link href="/projects" className="text-gray-400 hover:text-white">
-            Return to Projects
-          </Link>
-        </div>
-      </div>
-    )
+    notFound()
   }
 
   return (
@@ -66,11 +55,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
         </Link>
 
         <h1 className="text-4xl font-light tracking-tight mb-2">{project.title}</h1>
-        <div className="flex flex-wrap gap-x-8 gap-y-2 text-gray-400 mb-8">
-          <p>{project.category}</p>
-          <p>{project.year}</p>
-          <p>{project.location}</p>
-        </div>
+        <p className="text-gray-400 mb-6 max-w-3xl">{project.description}</p>
 
         {/* Replace the divider with a more structural one */}
         <div className="flex items-center mb-12">
@@ -78,48 +63,23 @@ export default async function ProjectPage({ params }: { params: { id: string } }
           <div className="flex-grow h-px bg-gray-800"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div>
-            <p className="text-lg text-gray-300 mb-6">{project.description}</p>
-            <p className="text-gray-300 mb-8">{project.longDescription}</p>
-
-            {/* Add structural engineering specifications section */}
-            <div className="border-t border-gray-800 pt-6 mb-8">
-              <h2 className="text-xl font-light mb-4">Engineering Specifications</h2>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="border-l border-gray-800 pl-4">
-                  <p className="text-sm text-gray-400">Structure Type</p>
-                  <p className="text-gray-300">Steel Frame</p>
-                </div>
-                <div className="border-l border-gray-800 pl-4">
-                  <p className="text-sm text-gray-400">Load Capacity</p>
-                  <p className="text-gray-300">250 kN/m²</p>
-                </div>
-                <div className="border-l border-gray-800 pl-4">
-                  <p className="text-sm text-gray-400">Foundation</p>
-                  <p className="text-gray-300">Reinforced Concrete</p>
-                </div>
-                <div className="border-l border-gray-800 pl-4">
-                  <p className="text-sm text-gray-400">Seismic Rating</p>
-                  <p className="text-gray-300">Zone 4 Compliant</p>
-                </div>
-              </div>
-            </div>
-
-            <h2 className="text-xl font-light mb-4">Features</h2>
-            <ul className="list-none text-gray-300 space-y-2">
-              {project.features.map((feature, index) => (
-                <li key={index} className="flex items-start">
-                  <div className="w-4 h-px bg-gray-700 mt-3 mr-3"></div>
-                  {feature}
-                </li>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="md:col-span-1 space-y-6">
+            <h2 className="text-xl font-light border-b border-gray-700 pb-2">Project Details</h2>
+            <ul className="space-y-2 text-gray-300">
+              {project.details.map((detail, index) => (
+                <li key={index} className="text-sm">{detail}</li>
               ))}
             </ul>
           </div>
 
-          <div className="relative h-[400px] border border-gray-800">
-            <Image src={project.images[0] || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
-            <div className="absolute inset-0 border border-gray-700 pointer-events-none"></div>
+          <div className="md:col-span-2">
+            {project.images && project.images.length > 0 && (
+              <div className="relative h-[400px] md:h-[500px] border border-gray-800 mb-8">
+                <Image src={project.images[0]} alt={project.title} fill className="object-cover" />
+                <div className="absolute inset-0 border border-gray-700 pointer-events-none"></div>
+              </div>
+            )}
           </div>
         </div>
 

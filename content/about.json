@@ -1,0 +1,90 @@
+{
+  "title": "About",
+  "subtitle": "Ronald Bailie, Licensed Architect & Mechanical Engineer",
+  "mainImage": "/placeholder.svg?height=500&width=400",
+  "sections": [
+    {
+      "type": "two-column-prose",
+      "title": "Background",
+      "content": [
+        "Ronald Bailie is a licensed architect with a Master's degree in Mechanical Engineering, bringing a unique perspective to the built environment. With over 15 years of experience, Ronald's work bridges the gap between aesthetic vision and technical precision.",
+        "His dual expertise allows for a holistic approach to design, where beautiful forms are constructed with confidence, backed by rigorous engineering principles. This integration results in spaces that are not only visually compelling but also structurally innovative and environmentally responsive."
+      ]
+    },
+    {
+      "type": "list",
+      "title": "Education",
+      "items": [
+        {
+          "primary": "Master of Science in Mechanical Engineering",
+          "secondary": "Massachusetts Institute of Technology, 2008",
+          "tertiary": "Thesis: \"Structural Dynamics in Concrete Members: Simulation and Analysis\""
+        },
+        {
+          "primary": "Bachelor of Architecture",
+          "secondary": "Rhode Island School of Design, 2006",
+          "tertiary": "Focus: Sustainable Design & Engineering Integration"
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "title": "Professional Credentials",
+      "items": [
+        {
+          "primary": "Licensed Architect",
+          "secondary": "NCARB Certified, 2010-Present"
+        },
+        {
+          "primary": "Professional Engineer (PE)",
+          "secondary": "Mechanical, 2012-Present"
+        },
+        {
+          "primary": "LEED Accredited Professional",
+          "secondary": "U.S. Green Building Council, 2011-Present"
+        }
+      ]
+    },
+    {
+      "type": "two-column-prose-simulation",
+      "title": "Research",
+      "contentTitle": "Concrete Structural Dynamics",
+      "content": [
+        "Ronald's MS research focused on simulating structural dynamics in concrete members, developing advanced computational models to predict behavior under various developing advanced computational models to predict behavior under various load conditions and stress factors. This research has directly informed his architectural practice, allowing for more innovative and efficient structural solutions.",
+        "Using triangular finite element analysis, Ronald's simulations accurately predict how concrete structures respond to dynamic forces, enabling the design of safer, more resilient buildings that maintain aesthetic integrity."
+      ]
+    },
+    {
+      "type": "three-column",
+      "title": "Philosophy",
+      "items": [
+        {
+          "title": "Integration",
+          "content": "Architecture and engineering should not be separate disciplines but integrated practices that inform and enhance each other."
+        },
+        {
+          "title": "Sustainability",
+          "content": "Sustainable design is not an add-on but a fundamental principle that guides every decision from concept to completion."
+        },
+        {
+          "title": "Innovation",
+          "content": "Pushing the boundaries of what's possible through research, experimentation, and application of new technologies."
+        }
+      ]
+    },
+    {
+      "type": "two-column-prose-grid",
+      "title": "Engineering Approach",
+      "content": [
+        "Ronald's engineering background informs every aspect of his architectural practice. From initial concept sketches to final construction documents, structural integrity and mechanical efficiency are considered alongside aesthetic goals.",
+        "This integrated approach allows for innovative solutions that might otherwise be overlooked in a traditional design process. By understanding both the artistic and technical aspects of building, Ronald creates spaces that are not only beautiful but also structurally sound and functionally optimized."
+      ],
+      "gridItems": [
+        { "title": "Structural Analysis", "content": "Advanced computational modeling for optimal structural solutions" },
+        { "title": "Material Science", "content": "Innovative applications of traditional and emerging building materials" },
+        { "title": "Systems Integration", "content": "Seamless coordination of structural, mechanical, and electrical systems" },
+        { "title": "Performance Optimization", "content": "Energy modeling and environmental analysis for sustainable outcomes" }
+      ]
+    }
+  ]
+} 

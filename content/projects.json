@@ -1,0 +1,80 @@
+[
+  {
+    "id": "modern-residential-complex",
+    "title": "Modern Residential Complex",
+    "category": "Residential",
+    "description": "A minimalist approach to multi-family housing with integrated sustainable systems.",
+    "images": ["/placeholder.svg?height=600&width=800", "/images/project1/detail1.jpg"],
+    "showSimulation": false,
+    "details": [
+      "Location: Downtown",
+      "Year: 2024",
+      "Status: Under Construction"
+    ]
+  },
+  {
+    "id": "urban-office-tower",
+    "title": "Urban Office Tower",
+    "category": "Commercial",
+    "description": "Innovative structural solutions for a 30-story office building with minimal environmental impact.",
+    "images": ["/placeholder.svg?height=600&width=800"],
+    "showSimulation": true,
+    "details": [
+      "Location: Financial District",
+      "Year: 2023",
+      "Status: Completed"
+    ]
+  },
+  {
+    "id": "cultural-center",
+    "title": "Cultural Center",
+    "category": "Public",
+    "description": "A space designed to foster community engagement through thoughtful spatial arrangement.",
+    "images": ["/placeholder.svg?height=600&width=800"],
+    "showSimulation": false,
+    "details": [
+      "Location: City Park",
+      "Year: 2022",
+      "Status: Completed"
+    ]
+  },
+  {
+    "id": "sustainable-housing-dev",
+    "title": "Sustainable Housing Development",
+    "category": "Residential",
+    "description": "Energy-efficient homes designed with passive cooling and heating systems.",
+    "images": ["/placeholder.svg?height=600&width=800"],
+    "showSimulation": false,
+    "details": [
+      "Location: Suburbia",
+      "Year: 2023",
+      "Status: Planning"
+    ]
+  },
+  {
+    "id": "research-facility",
+    "title": "Research Facility",
+    "category": "Institutional",
+    "description": "A laboratory complex with specialized mechanical systems for environmental control.",
+    "images": ["/placeholder.svg?height=600&width=800"],
+    "showSimulation": true,
+    "details": [
+      "Location: University Campus",
+      "Year: 2021",
+      "Status: Completed"
+    ]
+  },
+  {
+    "id": "waterfront-pavilion",
+    "title": "Waterfront Pavilion",
+    "category": "Public",
+    "description": "A lightweight structure designed to withstand coastal conditions while maintaining aesthetic elegance.",
+    "images": ["/placeholder.svg?height=600&width=800"],
+    "showSimulation": false,
+    "details": [
+      "Location: Harbor District",
+      "Year: 2024",
+      "Status: Design Phase"
+    ]
+  }
+]
