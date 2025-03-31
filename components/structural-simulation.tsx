@@ -105,7 +105,7 @@ export default function StructuralSimulation() {
 
   // State for UI controls
   const [springConstant, setSpringConstant] = useState(0.1);
-  const [neighborSpringConstant, setNeighborSpringConstant] = useState(0);
+  const [neighborSpringConstant, setNeighborSpringConstant] = useState(0.009);
   const [damping, setDamping] = useState(1.0);
   const [maxDisplacement, setMaxDisplacement] = useState(0.1);
 
@@ -447,6 +447,12 @@ export default function StructuralSimulation() {
     controls.enableDamping = true;
     controls.dampingFactor = 0.1; // Match value if needed
 
+    // --- Add these lines to disable rotation and panning ---
+    controls.enableRotate = false; // Disable rotation
+    controls.enablePan = false; // Disable panning (optional, but often desired with no rotation)
+    // controls.enableZoom = true; // Zoom is enabled by default, explicitly setting true is fine too
+    // ------------------------------------------------------
+
     // Mesh parameters
     const width = 10;
     const height = 5;
@@ -516,45 +522,42 @@ export default function StructuralSimulation() {
       }
     }
 
-    // --- Apply Initial Random Displacement ---
+    // --- Apply Initial Random Displacement to Right Edge ---
     const positions = geometry.attributes.position.array as Float32Array;
     const pointsPositions = pointsGeometry.attributes.position.array as Float32Array;
-    const numVertices = geometry.attributes.position.count;
-    const movableIndices: number[] = [];
 
-    for (let i = 0; i < numVertices; i++) {
-        const arrayIndex = i * 3;
-        if (!fixedVertices.has(arrayIndex)) {
-            movableIndices.push(arrayIndex);
-        }
+    // Identify indices on the right edge
+    const rightEdgeIndices: number[] = [];
+    const ws = widthSegments; // Use the defined widthSegments
+    const hs = heightSegments; // Use the defined heightSegments
+
+    for (let j = 0; j <= hs; j++) { // Iterate through rows (height)
+      // Calculate index for the vertex at (widthSegments, j) which is the right edge
+      const rightEdgeVertexIndex = (j * (ws + 1) + ws) * 3;
+      rightEdgeIndices.push(rightEdgeVertexIndex);
     }
 
-    // Shuffle movable indices (Fisher-Yates shuffle)
-    for (let i = movableIndices.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [movableIndices[i], movableIndices[j]] = [movableIndices[j], movableIndices[i]];
+    // Ensure there are right edge indices before proceeding
+    if (rightEdgeIndices.length > 0) {
+      // Randomly select ONE index from the right edge list
+      const randomIndex = Math.floor(Math.random() * rightEdgeIndices.length);
+      const idx = rightEdgeIndices[randomIndex]; // Get the actual array index
+
+      // Calculate and apply displacement (same logic as before)
+      const displacementScale = 0.1; // Small displacement factor
+      const dx = (Math.random() - 0.5) * 2 * displacementScale;
+      const dy = (Math.random() - 0.5) * 2 * displacementScale;
+
+      // Apply the unique dx, dy to the selected right edge vertex
+      positions[idx] += dx;
+      positions[idx + 1] += dy;
+      pointsPositions[idx] += dx;
+      pointsPositions[idx + 1] += dy;
+
+      // Mark buffers as needing update for the initial frame
+      geometry.attributes.position.needsUpdate = true;
+      pointsGeometry.attributes.position.needsUpdate = true;
     }
-
-    // Select first 9 (or fewer if not enough movable vertices)
-    const numToDisplace = Math.min(1, movableIndices.length);
-    const displacementScale = 0.1; // Small displacement factor
-
-    for (let i = 0; i < numToDisplace; i++) {
-        const idx = movableIndices[i];
-        // These lines generate NEW random numbers for EACH vertex in the loop
-        const dx = (Math.random() - 0.5) * 2 * displacementScale;
-        const dy = (Math.random() - 0.5) * 2 * displacementScale;
-
-        // Apply the unique dx, dy to this specific vertex
-        positions[idx] += dx;
-        positions[idx + 1] += dy;
-        pointsPositions[idx] += dx;
-        pointsPositions[idx + 1] += dy;
-    }
-
-    // Mark buffers as needing update for the initial frame
-    geometry.attributes.position.needsUpdate = true;
-    pointsGeometry.attributes.position.needsUpdate = true;
     // --- End Initial Displacement ---
 
     // Call handleResize once initially
