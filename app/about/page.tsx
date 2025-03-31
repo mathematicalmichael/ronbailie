@@ -1,6 +1,6 @@
 import Image from "next/image"
 import StructuralSimulation from "@/components/structural-simulation"
-import aboutContent from "@/content/about.json"
+import aboutContent from "../../content/about.json"
 
 // Helper function to render section dividers
 function SectionDivider({ title }: { title: string }) {
