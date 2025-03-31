@@ -666,7 +666,7 @@ export default function StructuralSimulation() {
              <span className="text-xs col-span-1">{damping.toFixed(3)}</span>
 
              {/* Max Displacement Slider */}
-             <label htmlFor="maxDisp" className="text-xs col-span-1 text-right">Stiffness:</label>
+             <label htmlFor="maxDisp" className="text-xs col-span-1 text-right">Range:</label>
              <input
                type="range" id="maxDisp" min="0.01" max="1.0" step="0.01"
                value={maxDisplacement} onChange={(e) => setMaxDisplacement(parseFloat(e.target.value))}
@@ -680,7 +680,7 @@ export default function StructuralSimulation() {
          <div className="w-full flex justify-center px-4"> {/* Centered container for button */}
            <button
              onClick={resetSimulation}
-             className="mx-8 w-full max-w-xs px-4 py-1 bg-gray-600 text-white text-sm rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500" // Thin (py-1), full width within max-w-xs
+             className="mx-8 w-full max-w-xs px-4 py-1 my-2 bg-gray-600 text-white text-sm rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500" // Thin (py-1), full width within max-w-xs
            >
              Reset
            </button>
