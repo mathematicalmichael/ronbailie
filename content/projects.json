@@ -1,27 +1,27 @@
 [
   {
-    "id": "modern-residential-complex",
-    "title": "Modern Residential Complex",
-    "category": "Residential",
-    "description": "A minimalist approach to multi-family housing with integrated sustainable systems.",
+    "id": "robotics-lab",
+    "title": "CU Denver Robotics Lab",
+    "category": "Institutional",
+    "description": "",
     "images": ["/placeholder.svg?height=600&width=800", "/placeholder.svg?height=600&width=1200"],
     "showSimulation": false,
     "details": [
-      "Location: Downtown",
-      "Year: 2024",
-      "Status: Under Construction"
+      "Location: University of Colorado: Denver (Downtown Campus)",
+      "Year: 2019",
+      "Status: Completed"
     ],
     "body": [
-      "Paragraph one detailing the design philosophy behind the complex, focusing on clean lines and natural light.",
-      "Paragraph two discussing the sustainable features, such as rainwater harvesting and solar panel integration.",
-      "Paragraph three elaborating on the structural engineering challenges and solutions employed."
+      "",
+      "",
+      ""
     ]
   },
   {
-    "id": "urban-office-tower",
-    "title": "Urban Office Tower",
-    "category": "Commercial",
-    "description": "Innovative structural solutions for a 30-story office building with minimal environmental impact.",
+    "id": "biolabs",
+    "title": "Denver Biolabs Research Facility",
+    "category": "Institutional",
+    "description": "",
     "images": ["/placeholder.svg?height=600&width=800", "/placeholder.svg?height=400&width=600"],
     "showSimulation": false,
     "details": [
@@ -31,10 +31,10 @@
     ]
   },
   {
-    "id": "cultural-center",
-    "title": "Cultural Center",
-    "category": "Public",
-    "description": "A space designed to foster community engagement through thoughtful spatial arrangement.",
+    "id": "structural-optimization",
+    "title": "Structural Optimization",
+    "category": "Research",
+    "description": "",
     "images": ["/placeholder.svg?height=600&width=800"],
     "showSimulation": false,
     "details": [
@@ -44,10 +44,10 @@
     ]
   },
   {
-    "id": "sustainable-housing-dev",
-    "title": "Sustainable Housing Development",
+    "id": "biosips",
+    "title": "BioSIPs Shipping Container Home",
     "category": "Residential",
-    "description": "Energy-efficient homes designed with passive cooling and heating systems.",
+    "description": "",
     "images": ["/placeholder.svg?height=600&width=800"],
     "showSimulation": false,
     "details": [
@@ -57,10 +57,10 @@
     ]
   },
   {
-    "id": "research-facility",
-    "title": "Research Facility",
-    "category": "Institutional",
-    "description": "A laboratory complex with specialized mechanical systems for environmental control.",
+    "id": "biocomposite",
+    "title": "Biocomposite Material Research",
+    "category": "Research",
+    "description": "",
     "images": ["/placeholder.svg?height=600&width=800"],
     "showSimulation": false,
     "details": [
@@ -70,10 +70,23 @@
     ]
   },
   {
-    "id": "waterfront-pavilion",
-    "title": "Waterfront Pavilion",
+    "id": "mesh-optimization",
+    "title": "Mesh Optimization",
+    "category": "Research",
+    "description": "",
+    "images": ["/placeholder.svg?height=600&width=800"],
+    "showSimulation": false,
+    "details": [
+      "Location: Harbor District",
+      "Year: 2024",
+      "Status: Design Phase"
+    ]
+  },
+  {
+    "id": "square-on-21",
+    "title": "The Square on 21st",
     "category": "Public",
-    "description": "A lightweight structure designed to withstand coastal conditions while maintaining aesthetic elegance.",
+    "description": "",
     "images": ["/placeholder.svg?height=600&width=800"],
     "showSimulation": false,
     "details": [
