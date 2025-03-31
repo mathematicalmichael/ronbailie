@@ -1,14 +1,14 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
-import StructuralSimulation from "@/components/structural-simulation"
+import StructuralSimulation from "../components/structural-simulation"
 // Import the JSON data
-import homeContent from "@/content/homepage.json"
+import homeContent from "../content/homepage.json"
 
 // Add function to fetch projects
 async function getFeaturedProjects() {
   try {
-    const projectsModule = await import("@/content/projects.json");
+    const projectsModule = await import("../content/projects.json");
     const allProjects = projectsModule.default;
     
     // Filter projects based on featuredProjects IDs
