@@ -42,13 +42,6 @@ export function Navbar() {
                 {item}
               </Link>
             ))}
-            <Link
-              href="/portfolio.pdf"
-              className="text-sm uppercase tracking-wider text-gray-300 hover:text-white transition-colors px-6 py-4 border-l border-gray-800"
-              target="_blank"
-            >
-              Portfolio
-            </Link>
           </nav>
 
           <button className="md:hidden text-gray-300 hover:text-white" onClick={() => setIsOpen(!isOpen)}>
