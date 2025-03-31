@@ -26,6 +26,6 @@
   ],
   "simulation": {
     "title": "Structural Analysis",
-    "annotation": "Interactive simulation demonstrating structural response under load. Drag to apply force."
+    "annotation": "Simplified simulation of structural response under load to demonstrate challenges with numerical stability. Drag to apply force."
   }
 } 

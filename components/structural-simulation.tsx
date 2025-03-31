@@ -431,7 +431,7 @@ export default function StructuralSimulation() {
     const initialAspect = currentContainer.clientWidth / currentContainer.clientHeight || 1; // Avoid NaN
     const camera = new THREE.PerspectiveCamera(60, initialAspect, 0.1, 1000);
     cameraRef.current = camera;
-    camera.position.set(0, 0, 5);
+    camera.position.set(0, 0, 8);
     camera.lookAt(0, 0, 0);
 
     // Renderer setup
@@ -632,55 +632,60 @@ export default function StructuralSimulation() {
          <div ref={containerRef} className="absolute inset-0" />
        </div>
 
-       {/* Controls Section */}
-       <div className="flex-shrink-0 p-2 flex justify-center">
-         <div className="grid grid-cols-3 gap-x-4 gap-y-1 w-full max-w-lg"> {/* Increased width */}
-           {/* Spring Constant Slider */}
-           <label htmlFor="spring" className="text-xs col-span-1 text-right">Spring K:</label>
-           <input
-             type="range" id="spring" min="0.001" max="0.2" step="0.001"
-             value={springConstant} onChange={(e) => setSpringConstant(parseFloat(e.target.value))}
-             className="col-span-1 h-4 accent-gray-500"
-           />
-           <span className="text-xs col-span-1">{springConstant.toFixed(3)}</span>
+       {/* Controls Section - Restructured */}
+       <div className="flex-shrink-0 p-4 flex flex-col items-center gap-4 mb-4"> {/* Stack vertically, center items, add gap, keep bottom margin */}
 
-           {/* Neighbor Spring Constant Slider */}
-           <label htmlFor="neighborSpring" className="text-xs col-span-1 text-right">Neighbor K:</label>
-           <input
-             type="range" id="neighborSpring" min="0" max="0.1" step="0.001"
-             value={neighborSpringConstant} onChange={(e) => setNeighborSpringConstant(parseFloat(e.target.value))}
-             className="col-span-1 h-4 accent-gray-500"
-           />
-           <span className="text-xs col-span-1">{neighborSpringConstant.toFixed(3)}</span>
+         {/* Slider Grid Row */}
+         <div className="w-full max-w-lg flex justify-center"> {/* Centered container for sliders */}
+           <div className="grid grid-cols-3 gap-x-4 gap-y-1 w-full"> {/* Grid takes full width within container */}
+             {/* Spring Constant Slider */}
+             <label htmlFor="spring" className="text-xs col-span-1 text-right">Spring:</label>
+             <input
+               type="range" id="spring" min="0.001" max="0.2" step="0.001"
+               value={springConstant} onChange={(e) => setSpringConstant(parseFloat(e.target.value))}
+               className="col-span-1 h-4 accent-gray-500"
+             />
+             <span className="text-xs col-span-1">{springConstant.toFixed(3)}</span>
 
-           {/* Damping Slider */}
-           <label htmlFor="damping" className="text-xs col-span-1 text-right">Damping:</label>
-           <input
-             type="range" id="damping" min="0.8" max="1.0" step="0.001"
-             value={damping} onChange={(e) => setDamping(parseFloat(e.target.value))}
-             className="col-span-1 h-4 accent-gray-500"
-           />
-           <span className="text-xs col-span-1">{damping.toFixed(3)}</span>
+             {/* Neighbor Spring Constant Slider */}
+             <label htmlFor="neighborSpring" className="text-xs col-span-1 text-right">Impact:</label>
+             <input
+               type="range" id="neighborSpring" min="0" max="0.1" step="0.001"
+               value={neighborSpringConstant} onChange={(e) => setNeighborSpringConstant(parseFloat(e.target.value))}
+               className="col-span-1 h-4 accent-gray-500"
+             />
+             <span className="text-xs col-span-1">{neighborSpringConstant.toFixed(3)}</span>
 
-           {/* Max Displacement Slider */}
-           <label htmlFor="maxDisp" className="text-xs col-span-1 text-right">Max Disp:</label>
-           <input
-             type="range" id="maxDisp" min="0.01" max="1.0" step="0.01"
-             value={maxDisplacement} onChange={(e) => setMaxDisplacement(parseFloat(e.target.value))}
-             className="col-span-1 h-4 accent-gray-500"
-           />
-           <span className="text-xs col-span-1">{maxDisplacement.toFixed(2)}</span>
+             {/* Damping Slider */}
+             <label htmlFor="damping" className="text-xs col-span-1 text-right">Damping:</label>
+             <input
+               type="range" id="damping" min="0.8" max="1.0" step="0.001"
+               value={damping} onChange={(e) => setDamping(parseFloat(e.target.value))}
+               className="col-span-1 h-4 accent-gray-500"
+             />
+             <span className="text-xs col-span-1">{damping.toFixed(3)}</span>
+
+             {/* Max Displacement Slider */}
+             <label htmlFor="maxDisp" className="text-xs col-span-1 text-right">Stiffness:</label>
+             <input
+               type="range" id="maxDisp" min="0.01" max="1.0" step="0.01"
+               value={maxDisplacement} onChange={(e) => setMaxDisplacement(parseFloat(e.target.value))}
+               className="col-span-1 h-4 accent-gray-500"
+             />
+             <span className="text-xs col-span-1">{maxDisplacement.toFixed(2)}</span>
+           </div>
          </div>
-       </div>
 
-       {/* Bottom: Reset Button Section */}
-       <div className="flex-shrink-0 p-4 flex justify-center">
-         <button
-           onClick={resetSimulation}
-           className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
-         >
-           Reset Simulation
-         </button>
+         {/* Reset Button Row */}
+         <div className="w-full flex justify-center px-4"> {/* Centered container for button */}
+           <button
+             onClick={resetSimulation}
+             className="mx-8 w-full max-w-xs px-4 py-1 bg-gray-600 text-white text-sm rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500" // Thin (py-1), full width within max-w-xs
+           >
+             Reset
+           </button>
+         </div>
+
        </div>
 
      </div>
