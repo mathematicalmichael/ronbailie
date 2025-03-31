@@ -16,7 +16,7 @@ import ProjectGrid from "./project-grid"; // Import the new Client Component
 
 async function getProjectsData(): Promise<{ projects: Project[]; categories: string[] }> {
   try {
-    const projectsModule = await import("@/content/projects.json");
+    const projectsModule = await import("../../content/projects.json");
     const projects: Project[] = projectsModule.default;
     // Extract unique categories
     const categories = Array.from(new Set(projects.map(p => p.category)));

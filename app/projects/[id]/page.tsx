@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
-import StructuralSimulation from "@/components/structural-simulation"
+import StructuralSimulation from "../../../components/structural-simulation"
 import { notFound } from "next/navigation"
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
@@ -33,7 +33,7 @@ async function getProject(id: string): Promise<Project | null> {
   // Example: Fetch from a local JSON file or an API
   try {
      // Assuming you'll create a projects.json like the other content files
-     const projectsModule = await import("@/content/projects.json")
+     const projectsModule = await import("../../../content/projects.json")
      const projects: Project[] = projectsModule.default
      const project = projects.find(p => p.id === id)
      return project || null
