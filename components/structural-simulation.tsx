@@ -431,7 +431,7 @@ export default function StructuralSimulation() {
     const initialAspect = currentContainer.clientWidth / currentContainer.clientHeight || 1; // Avoid NaN
     const camera = new THREE.PerspectiveCamera(60, initialAspect, 0.1, 1000);
     cameraRef.current = camera;
-    camera.position.set(0, 0, 10);
+    camera.position.set(0, 0, 5);
     camera.lookAt(0, 0, 0);
 
     // Renderer setup
