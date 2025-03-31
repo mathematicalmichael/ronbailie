@@ -16,6 +16,13 @@ type Project = {
   details: string[];
 };
 
+// Define a type for the props, including params
+type ProjectPageProps = {
+  params: {
+    id: string;
+  };
+};
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -36,11 +43,24 @@ async function getProject(id: string): Promise<Project | null> {
   }
 }
 
-export default async function ProjectPage({ params: { id } }: { params: { id: string } }) {
-  const project = await getProject(id)
+// Update the function signature to accept the full props object
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  // Log the params object to inspect it
+  console.log('--- ProjectPage Start ---');
+  // Await the params promise to get the actual parameters object
+  const resolvedParams = await params;
+  console.log('Resolved params:', resolvedParams);
+  console.log('Type of resolvedParams:', typeof resolvedParams);
+
+  // Explicitly extract id *after* awaiting params
+  const id = resolvedParams.id;
+  console.log('Extracted id:', id);
+
+  // Now use the extracted id variable
+  const project = await getProject(id);
 
   if (!project) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -100,26 +120,33 @@ export default async function ProjectPage({ params: { id } }: { params: { id: st
           </div>
         )}
 
-        <div className="mt-16">
-          <div className="flex items-center mb-8">
-            <div className="w-12 h-px bg-gray-700 mr-4"></div>
-            <h2 className="text-xl font-light">Project Gallery</h2>
-            <div className="flex-grow h-px bg-gray-800 ml-4"></div>
+        {/* --- Project Gallery Section --- */}
+        {/* Conditionally render the gallery only if there are more than 1 image */}
+        {project.images && project.images.length > 1 && (
+          <div className="mt-16">
+            <div className="flex items-center mb-8">
+              <div className="w-12 h-px bg-gray-700 mr-4"></div>
+              <h2 className="text-xl font-light">Project Gallery</h2>
+              <div className="flex-grow h-px bg-gray-800 ml-4"></div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Map starting from the second image (index 1) */}
+              {project.images.slice(1).map((image, index) => (
+                <div key={index} className="relative h-[200px] border border-gray-800">
+                  <Image
+                    // Use a fallback placeholder if image path is missing/invalid, although ideally fix the paths
+                    src={image || "/placeholder.svg"}
+                    alt={`${project.title} - Image ${index + 2}`} // Alt text index starts from 2
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 border border-gray-700 pointer-events-none"></div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {project.images.slice(1).map((image, index) => (
-              <div key={index} className="relative h-[200px] border border-gray-800">
-                <Image
-                  src={image || "/placeholder.svg"}
-                  alt={`${project.title} - Image ${index + 2}`}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 border border-gray-700 pointer-events-none"></div>
-              </div>
-            ))}
-          </div>
-        </div>
+        )}
+        {/* --- End of Project Gallery Section --- */}
 
         {/* Add thin horizontal line at the bottom */}
         <div className="w-full h-px bg-gray-800 mt-24"></div>
