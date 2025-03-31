@@ -4,12 +4,17 @@
     "title": "Modern Residential Complex",
     "category": "Residential",
     "description": "A minimalist approach to multi-family housing with integrated sustainable systems.",
-    "images": ["/placeholder.svg?height=600&width=800", "/images/project1/detail1.jpg"],
+    "images": ["/placeholder.svg?height=600&width=800", "/placeholder.svg?height=600&width=1200"],
     "showSimulation": false,
     "details": [
       "Location: Downtown",
       "Year: 2024",
       "Status: Under Construction"
+    ],
+    "body": [
+      "Paragraph one detailing the design philosophy behind the complex, focusing on clean lines and natural light.",
+      "Paragraph two discussing the sustainable features, such as rainwater harvesting and solar panel integration.",
+      "Paragraph three elaborating on the structural engineering challenges and solutions employed."
     ]
   },
   {
@@ -17,8 +22,8 @@
     "title": "Urban Office Tower",
     "category": "Commercial",
     "description": "Innovative structural solutions for a 30-story office building with minimal environmental impact.",
-    "images": ["/placeholder.svg?height=600&width=800"],
-    "showSimulation": true,
+    "images": ["/placeholder.svg?height=600&width=800", "/placeholder.svg?height=400&width=600"],
+    "showSimulation": false,
     "details": [
       "Location: Financial District",
       "Year: 2023",
@@ -57,7 +62,7 @@
     "category": "Institutional",
     "description": "A laboratory complex with specialized mechanical systems for environmental control.",
     "images": ["/placeholder.svg?height=600&width=800"],
-    "showSimulation": true,
+    "showSimulation": false,
     "details": [
       "Location: University Campus",
       "Year: 2021",
