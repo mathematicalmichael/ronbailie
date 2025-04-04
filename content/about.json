@@ -32,16 +32,7 @@
       "title": "Professional Credentials",
       "items": [
         {
-          "primary": "Licensed Architect",
-          "secondary": "NCARB Certified, 2010-Present"
-        },
-        {
-          "primary": "Professional Engineer (PE)",
-          "secondary": "Mechanical, 2012-Present"
-        },
-        {
-          "primary": "LEED Accredited Professional",
-          "secondary": "U.S. Green Building Council, 2011-Present"
+          "primary": "Licensed Architect"
         }
       ]
     },
