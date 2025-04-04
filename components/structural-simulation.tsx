@@ -416,6 +416,46 @@ export default function StructuralSimulation() {
     }
   };
 
+  // Add this function near your other functions
+  const perturbRandomNode = () => {
+    if (!geometryRef.current || !pointsGeometryRef.current) return;
+
+    const positions = geometryRef.current.attributes.position.array as Float32Array;
+    const pointsPositions = pointsGeometryRef.current.attributes.position.array as Float32Array;
+    const ws = 20; // widthSegments
+    const hs = 10; // heightSegments
+
+    // Get right edge indices (same logic as in initial setup)
+    const rightEdgeIndices: number[] = [];
+    for (let j = 0; j <= hs; j++) {
+      const rightEdgeVertexIndex = (j * (ws + 1) + ws) * 3;
+      rightEdgeIndices.push(rightEdgeVertexIndex);
+    }
+
+    if (rightEdgeIndices.length > 0) {
+      const randomIndex = Math.floor(Math.random() * rightEdgeIndices.length);
+      const idx = rightEdgeIndices[randomIndex];
+
+      const displacementScale = 0.1;
+      const dx = (Math.random() - 0.5) * 2 * displacementScale;
+      const dy = (Math.random() - 0.5) * 2 * displacementScale;
+
+      positions[idx] += dx;
+      positions[idx + 1] += dy;
+      pointsPositions[idx] += dx;
+      pointsPositions[idx + 1] += dy;
+
+      geometryRef.current.attributes.position.needsUpdate = true;
+      pointsGeometryRef.current.attributes.position.needsUpdate = true;
+
+      // Update wireframe
+      if (meshRef.current) {
+        meshRef.current.geometry.dispose();
+        meshRef.current.geometry = new THREE.WireframeGeometry(geometryRef.current);
+      }
+    }
+  };
+
   // --- useEffect for setup and cleanup ---
   useEffect(() => {
     if (!containerRef.current) return;
@@ -632,12 +672,11 @@ export default function StructuralSimulation() {
          <div ref={containerRef} className="absolute inset-0" />
        </div>
 
-       {/* Controls Section - Restructured */}
-       <div className="flex-shrink-0 p-4 flex flex-col items-center gap-4 mb-4"> {/* Stack vertically, center items, add gap, keep bottom margin */}
-
+       {/* Controls Section */}
+       <div className="flex-shrink-0 p-4 flex flex-col items-center gap-4 mb-4">
          {/* Slider Grid Row */}
-         <div className="w-full max-w-lg flex justify-center"> {/* Centered container for sliders */}
-           <div className="grid grid-cols-3 gap-x-4 gap-y-1 w-full"> {/* Grid takes full width within container */}
+         <div className="w-full max-w-lg flex justify-center">
+           <div className="grid grid-cols-3 gap-x-4 gap-y-1 w-full">
              {/* Spring Constant Slider */}
              <label htmlFor="spring" className="text-xs col-span-1 text-right">Spring:</label>
              <input
@@ -676,16 +715,21 @@ export default function StructuralSimulation() {
            </div>
          </div>
 
-         {/* Reset Button Row */}
-         <div className="w-full flex justify-center px-4"> {/* Centered container for button */}
+         {/* Buttons Row */}
+         <div className="w-full flex justify-center gap-4 px-4">
            <button
              onClick={resetSimulation}
-             className="mx-8 w-full max-w-xs px-4 py-1 my-2 bg-gray-600 text-white text-sm rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500" // Thin (py-1), full width within max-w-xs
+             className="w-full max-w-[120px] px-4 py-1 my-2 bg-gray-600 text-white text-sm rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
            >
              Reset
            </button>
+           <button
+             onClick={perturbRandomNode}
+             className="w-full max-w-[120px] px-4 py-1 my-2 bg-gray-600 text-white text-sm rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+           >
+             Perturb
+           </button>
          </div>
-
        </div>
 
      </div>
