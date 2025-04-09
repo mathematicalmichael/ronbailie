@@ -4,7 +4,8 @@ on:
   # schedule:
   #  - cron: '0 18 * * *'  # Run at 12:00 PM Denver time (18:00 UTC)
   push:
-    - main
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
