@@ -5,11 +5,12 @@ import StructuralSimulation from "../../../components/structural-simulation"
 import { notFound } from "next/navigation"
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import projectsData from "../../../content/projects.json"; // Import the data directly
 
-// Define a type for your project data for better type safety
 type Project = {
   id: string;
   title: string;
+  category: string;
   description: string;
   images: string[];
   showSimulation: boolean;
@@ -23,23 +24,30 @@ type ProjectPageProps = {
   };
 };
 
+// Function to generate static paths
+export async function generateStaticParams() {
+  // Type assertion if needed, or ensure projectsData matches Project[]
+  const projects = projectsData as Project[];
+  return projects.map((project) => ({
+    id: project.id,
+  }));
+}
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// This would be replaced with actual data fetching in a real application
+// Fetch data for a specific project
+// (Keep the getProject function as it might still be useful,
+// but data is primarily resolved via params in static generation)
 async function getProject(id: string): Promise<Project | null> {
-  // Placeholder: Replace with your actual data fetching logic
-  // Example: Fetch from a local JSON file or an API
   try {
-     // Assuming you'll create a projects.json like the other content files
-     const projectsModule = await import("../../../content/projects.json")
-     const projects: Project[] = projectsModule.default
-     const project = projects.find(p => p.id === id)
-     return project || null
+    const projects = projectsData as Project[]; // Use imported data
+    const project = projects.find(p => p.id === id)
+    return project || null
   } catch (error) {
     console.error("Failed to fetch project:", error)
-    return null // Indicate failure
+    return null
   }
 }
 
@@ -47,13 +55,9 @@ async function getProject(id: string): Promise<Project | null> {
 export default async function ProjectPage({ params }: ProjectPageProps) {
   // Log the params object to inspect it
   console.log('--- ProjectPage Start ---');
-  // Await the params promise to get the actual parameters object
-  const resolvedParams = await params;
-  console.log('Resolved params:', resolvedParams);
-  console.log('Type of resolvedParams:', typeof resolvedParams);
-
-  // Explicitly extract id *after* awaiting params
-  const id = resolvedParams.id;
+  // No need to await params here, it's directly available
+  const id = params.id;
+  console.log('Resolved params:', params);
   console.log('Extracted id:', id);
 
   // Now use the extracted id variable
