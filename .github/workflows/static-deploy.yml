@@ -36,6 +36,3 @@ jobs:
           branch: gh-pages
           clean: true
           single-commit: true
-          # repository-name: mathematicalmichael/ronbailie
-          # token: ${{ secrets.DEPLOY_TOKEN }}
-          dry-run: true
