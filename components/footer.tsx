@@ -15,7 +15,7 @@ export function Footer() {
             <p className="text-gray-400 text-sm">
               Licensed Architect
               <br />
-              MS Mechanical Engineering
+              MSc Structural Engineering & Mechanics
             </p>
             <div className="w-12 h-px bg-gray-800 my-4"></div>
             <p className="text-gray-500 text-xs">
