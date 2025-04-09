@@ -7,8 +7,10 @@ export function Footer() {
       <div className="w-full h-px bg-gray-800"></div>
 
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="border-r border-gray-800 pr-8">
+        {/* Adjust grid to two columns as contact info is removed */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Removed border-r and pr-8 as it's now the first of two */}
+          <div>
             <h3 className="text-lg font-light mb-4">Ronald Bailie</h3>
             <p className="text-gray-400 text-sm">
               Licensed Architect
@@ -25,20 +27,9 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="border-r border-gray-800 pr-8">
-            <h3 className="text-lg font-light mb-4">Contact</h3>
-            <div className="grid grid-cols-1 gap-4">
-              <div className="border-l border-gray-800 pl-4">
-                <p className="text-sm text-gray-400">Email</p>
-                <p className="text-gray-300">email@example.com</p>
-              </div>
-              <div className="border-l border-gray-800 pl-4">
-                <p className="text-sm text-gray-400">Phone</p>
-                <p className="text-gray-300">(555) 123-4567</p>
-              </div>
-            </div>
-          </div>
+          {/* Removed the entire Contact div block */}
 
+          {/* This Links section now becomes the second column */}
           <div>
             <h3 className="text-lg font-light mb-4">Links</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -47,8 +38,7 @@ export function Footer() {
                   key={item}
                   href={item === "PDF Portfolio" ? "/portfolio.pdf" : `/${item.toLowerCase()}`}
                   className="text-gray-400 hover:text-white text-sm transition-colors border-l border-gray-800 pl-4"
-                  {...(item === "PDF Portfolio" ? { target: "_blank" } : {})}
-                >
+                  {...(item === "PDF Portfolio" ? { target: "_blank" } : {})}>
                   {item}
                 </Link>
               ))}
@@ -60,7 +50,7 @@ export function Footer() {
           <p className="text-gray-400 text-sm">© {new Date().getFullYear()} Ronald Bailie. All rights reserved.</p>
           <div className="flex items-center mt-4 md:mt-0">
             <div className="w-12 h-px bg-gray-800 mr-4"></div>
-            <p className="text-gray-500 text-xs">Architecture x Engineering</p>
+            <p className="text-gray-500 text-xs">Architect x Engineer</p>
           </div>
         </div>
       </div>
