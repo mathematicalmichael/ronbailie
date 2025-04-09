@@ -7,5 +7,5 @@ install: bun.lockb
 bun.lockb: package.json
 	bun install
 
-bun-build: install
-	bun run build:static
+build: install
+	bun run build
