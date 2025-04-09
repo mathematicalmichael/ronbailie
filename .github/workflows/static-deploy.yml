@@ -1,0 +1,38 @@
+name: Deploy Static Site
+
+on:
+  schedule:
+    - cron: '0 18 * * *'  # Run at 12:00 PM Denver time (18:00 UTC)
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 1.1.42
+
+      - name: Install Dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build Static Site
+        run: bun run build
+
+      - name: Add .nojekyll file
+        run: touch out/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
+          branch: gh-pages
+          clean: true
+          single-commit: true
+          # repository-name: mathematicalmichael/ronbailie
+          # token: ${{ secrets.DEPLOY_TOKEN }}
+          dry-run: true
