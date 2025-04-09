@@ -12,7 +12,7 @@ const inter = Inter({
 
 export const metadata = {
   title: "Ronald Bailie | Architect & Engineer",
-  description: "Portfolio of Ronald Bailie, Licensed Architect with MS in Mechanical Engineering",
+  description: "Portfolio of Ronald Bailie, Licensed Architect with MSc in Structural Engineering and Structural Mechanics",
     generator: 'v0.dev'
 }
 
